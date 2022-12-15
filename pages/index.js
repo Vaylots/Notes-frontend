@@ -43,9 +43,10 @@ export default function Home({ notes }) {
           </div>
         </header>
         <div className="w-full h-full mt-4">
-          {notes.map((element) => {
+          {notes.map((element, index) => {
             return (
               <Note
+                key={index}
                 id={element.id}
                 title={element.title}
                 success={element.success}
@@ -59,7 +60,7 @@ export default function Home({ notes }) {
 }
 
 export async function getStaticProps(context) {
-  const response = await axios("http://localhost:8080/getallnotes");
+  const response = await axios("http://127.0.0.1:8080/getallnotes");
   const notes = response.data;
   return {
     props: { notes }, // will be passed to the page component as props

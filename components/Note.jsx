@@ -1,17 +1,17 @@
-import { useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 export default function Note({ id, title, success }) {
   function deleteNote(id) {
-    axios.get(`http://localhost:8080/deletenote/${id}`);
+    axios.get(`http://127.0.0.1:8080/deletenote/${id}`);
     window.location.reload();
   }
 
   function succesNote(id) {
-    axios.get(`http://localhost:8080/successnote/${id}`);
+    axios.get(`http://127.0.0.1:8080/successnote/${id}`);
 
     window.location.reload();
   }
+  const button = document.getElementById("test-button");
 
   return (
     <div>
@@ -26,6 +26,7 @@ export default function Note({ id, title, success }) {
           <div className="flex gap-2">
             <div>
               <Image
+                alt={"Check"}
                 onClick={() => {
                   succesNote(id);
                 }}
@@ -37,6 +38,7 @@ export default function Note({ id, title, success }) {
             </div>
             <div>
               <Image
+                alt={"delete"}
                 onClick={() => {
                   deleteNote(id);
                 }}
@@ -65,6 +67,7 @@ export default function Note({ id, title, success }) {
                   onClick={() => {
                     succesNote(id);
                   }}
+                  alt={"Check"}
                   className="cursor-pointer"
                   src={"/checkcs.svg"}
                   width={30}
@@ -76,6 +79,7 @@ export default function Note({ id, title, success }) {
                   onClick={() => {
                     deleteNote(id);
                   }}
+                  alt={"delete"}
                   className="cursor-pointer"
                   src={"/crossw.svg"}
                   width={30}
